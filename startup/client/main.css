@@ -1,0 +1,8 @@
+body {
+  overflow: auto !important;
+}
+
+.loading-icons {
+  margin: auto;
+  margin-top: 100px;
+} 

@@ -1,0 +1,48 @@
+#import "../_fragments/Users.gql"
+
+query users {
+  users {
+    total
+    users {
+      _id
+      name {
+        first
+        last
+      }
+      roles {
+        _id
+        name
+        inRole
+      }
+      emailAddress
+      emailVerified
+      oAuthProvider
+    }
+  }
+}
+
+query user($_id: String) {
+  user(_id: $_id) {
+    ...UserAttributes
+  }
+}
+
+query userSettings {
+  user {
+    settings {
+      _id
+      isGDPR
+      key
+      label
+      type
+      value
+      lastUpdatedByUser
+    }
+  }
+}
+
+query exportUserData {
+  exportUserData {
+    zip
+  }
+}
