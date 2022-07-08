@@ -70,7 +70,7 @@ export default function Login() {
         <Container maxWidth="sm">
           <ContentStyle>
             <Typography variant="h4" gutterBottom>
-              Sign in to Meteor Starter Kit
+              Sign in to iDie
             </Typography>
 
             <Typography sx={{ color: 'text.secondary', mb: 5 }}>

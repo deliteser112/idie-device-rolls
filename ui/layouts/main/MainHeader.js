@@ -88,7 +88,7 @@ export default function MainHeader() {
               ...(!isHome && { color: 'common.black' }),
             }}
           >
-            Meteor Starter Kit
+            iDie
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
 

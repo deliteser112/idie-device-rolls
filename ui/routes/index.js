@@ -22,6 +22,17 @@ import Page404 from '../pages/other/Page404';
 import Documents from '../pages/dashboard/document';
 import DocumentCreate from '../pages/dashboard/document/DocumentCreate';
 
+// devices
+import Devices from '../pages/dashboard/device';
+import DeviceCreate from '../pages/dashboard/device/DeviceCreate';
+
+// rolls
+import Rolls from '../pages/dashboard/roll';
+
+// actions
+import Actions from '../pages/dashboard/action';
+import ActionCreate from '../pages/dashboard/action/ActionCreate';
+
 // users
 import User from '../pages/dashboard/user';
 import UserProfile from '../pages/dashboard/user-profile';
@@ -59,6 +70,11 @@ export default function Router() {
         { path: 'documents/create', element: <DocumentCreate /> },
         { path: 'documents/:documentId/edit', element: <DocumentCreate /> },
 
+        // devices
+        { path: 'devices', element: <Devices /> },
+        { path: 'devices/create', element: <DeviceCreate /> },
+        { path: 'devices/:deviceId/edit', element: <DeviceCreate /> },
+
         // Admin/users
         {
           path: 'users',
@@ -85,7 +101,43 @@ export default function Router() {
               <UserSettings />
             </RoleBasedGuard>
           )
-        }
+        },
+
+        // Admin/rolls
+        {
+          path: 'rolls',
+          element: (
+            <RoleBasedGuard>
+              <Rolls />
+            </RoleBasedGuard>
+          )
+        },
+        
+        // Admin/actions
+        {
+          path: 'actions',
+          element: (
+            <RoleBasedGuard>
+              <Actions />
+            </RoleBasedGuard>
+          )
+        },
+        {
+          path: 'actions/create',
+          element: (
+            <RoleBasedGuard>
+              <ActionCreate />
+            </RoleBasedGuard>
+          )
+        },
+        {
+          path: 'actions/:actionId/edit',
+          element: (
+            <RoleBasedGuard>
+              <ActionCreate />
+            </RoleBasedGuard>
+          )
+        },
       ]
     },
     {

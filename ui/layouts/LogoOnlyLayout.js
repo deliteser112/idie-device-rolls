@@ -29,7 +29,7 @@ export default function LogoOnlyLayout() {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Logo />
           <Typography variant="h5" sx={{ marginLeft: 1 }}>
-            Meteor Starter Kit
+            iDie
           </Typography>
         </Box>
       </HeaderStyle>

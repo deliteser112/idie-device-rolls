@@ -1,0 +1,19 @@
+query dices {
+  dices {
+      _id
+      mac,
+      name,
+      ownerId,
+      followerIds
+  }
+}
+
+query editDevice($_id: String) {
+  device(_id: $_id) {
+    _id
+    mac,
+    name,
+    ownerId,
+    followerIds
+  }
+}

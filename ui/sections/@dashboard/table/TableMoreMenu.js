@@ -30,7 +30,7 @@ export default function TableMoreMenu({ _id, onDelete, editLink }) {
       <ConfirmDialog
         onAgree={handleAgree}
         isOpen={dialogOpen}
-        title="Meteor Starter Kit | Confirm"
+        title="iDie | Confirm"
         content="Are you sure to delete this item?"
       />
       <IconButton ref={ref} onClick={() => setIsOpen(true)}>

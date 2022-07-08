@@ -1,0 +1,30 @@
+query devices {
+  devices {
+      _id
+      mac,
+      name,
+      ownerId,
+      followerIds
+  }
+}
+
+query deviceUsers {
+  deviceUsers {
+    _id
+    name {
+      first
+      last
+    }
+    email
+  }
+}
+
+query editDevice($_id: String) {
+  device(_id: $_id) {
+    _id
+    mac,
+    name,
+    ownerId,
+    followerIds
+  }
+}

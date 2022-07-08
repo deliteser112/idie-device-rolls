@@ -20,7 +20,7 @@ export default function DashboardApp() {
     <Page title="Dashboard">
       <Container maxWidth="xl">
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Meteor Starter Kit Analytics
+          iDie Analytics
         </Typography>
 
         <Grid container spacing={3}>

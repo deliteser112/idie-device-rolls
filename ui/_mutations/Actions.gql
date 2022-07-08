@@ -1,0 +1,17 @@
+mutation addAction($name: String!, $action: String!, $equation: String!) {
+  addAction(name: $name, action: $action, equation: $equation) {
+    _id
+  }
+}
+
+mutation updateAction($_id: ID!, $name: String!, $action: String!, $equation: String!) {
+  updateAction(_id: $_id, name: $name, action: $action, equation: $equation) {
+    _id
+  }
+}
+
+mutation removeAction($_id: String!) {
+  removeAction(_id: $_id) {
+    _id
+  }
+}

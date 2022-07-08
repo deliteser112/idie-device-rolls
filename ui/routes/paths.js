@@ -43,9 +43,21 @@ export const PATH_DASHBOARD = {
   documents: path(ROOTS_DASHBOARD, '/documents'),
   documentCreate: path(ROOTS_DASHBOARD, '/documents/create'),
 
+  // devices
+  devices: path(ROOTS_DASHBOARD, '/devices'),
+  deviceCreate: path(ROOTS_DASHBOARD, '/devices/create'),
+
+  // rolls
+  rolls: path(ROOTS_DASHBOARD, '/rolls'),
+  rollCreate: path(ROOTS_DASHBOARD, '/rolls/create'),
+
+  // actions
+  actions: path(ROOTS_DASHBOARD, '/actions'),
+  actionCreate: path(ROOTS_DASHBOARD, '/actions/create'),
+
   // users
   users: path(ROOTS_DASHBOARD, '/users'),
-
+  
   // userSettings
   userSettings: path(ROOTS_DASHBOARD, '/user-settings'),
 

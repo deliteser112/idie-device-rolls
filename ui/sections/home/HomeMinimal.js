@@ -101,7 +101,7 @@ export default function HomeMinimal() {
         >
           <m.div variants={varFade().inUp}>
             <Typography component="div" variant="overline" sx={{ mb: 2, color: 'text.disabled' }}>
-              Meteor Starter Kit
+              iDie
             </Typography>
           </m.div>
           <m.div variants={varFade().inDown}>

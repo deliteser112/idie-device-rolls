@@ -1,0 +1,17 @@
+mutation addDevice($mac: String!, $name: String!, $ownerId: String!, $followerIds: [String]) {
+  addDevice(mac: $mac, name: $name, ownerId: $ownerId, followerIds: $followerIds) {
+    _id
+  }
+}
+
+mutation updateDevice($_id: String!, $mac: String!, $name: String!, $ownerId: String!, $followerIds: [String]) {
+  updateDevice(_id: $_id, mac: $mac, name: $name, ownerId: $ownerId, followerIds: $followerIds) {
+    _id
+  }
+}
+
+mutation removeDevice($_id: String!) {
+  removeDevice(_id: $_id) {
+    _id
+  }
+}

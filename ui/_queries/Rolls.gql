@@ -1,0 +1,31 @@
+query rolls {
+  rolls {
+    _id,
+    device,
+    dice,
+    results {
+        coverImg,
+        name,
+        result,
+        calculation,
+        equation
+    },
+    createdAt
+  }
+}
+
+query rollsByMAC($device: String!) {
+    rollsByMAC(device: $device) {
+        _id,
+        device,
+        dice,
+        results {
+            coverImg,
+            name,
+            result,
+            calculation,
+            equation
+        },
+        createdAt
+    }
+}

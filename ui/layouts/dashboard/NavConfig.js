@@ -22,6 +22,11 @@ const navConfig = [
         path: `${PATH_DASHBOARD.documents}`,
         icon: getIcon('gala:file-doc'),
       },
+      {
+        title: 'devices',
+        path: `${PATH_DASHBOARD.devices}`,
+        icon: getIcon('ic:twotone-on-device-training'),
+      },
     ],
   },
   {
@@ -37,6 +42,16 @@ const navConfig = [
         path: `${PATH_DASHBOARD.userSettings}`,
         icon: getIcon('fluent:people-settings-28-regular'),
       },
+      {
+        title: 'action',
+        path: `${PATH_DASHBOARD.actions}`,
+        icon: getIcon('carbon:touch-interaction'),
+      },
+      {
+        title: 'rolls',
+        path: `${PATH_DASHBOARD.rolls}`,
+        icon: getIcon('fa6-solid:dice'),
+      }
     ],
   },
 ];

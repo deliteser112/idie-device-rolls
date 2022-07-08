@@ -58,7 +58,7 @@ export default function MainFooter() {
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-              The starting point for your next project with Meteor Starter Kit, built on the newest
+              The starting point for your next project with iDie, built on the newest
               version of Material-UI, Meteor, GraphQL ©, ready to be customized to your idea.
             </Typography>
 

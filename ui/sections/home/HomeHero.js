@@ -80,7 +80,7 @@ export default function HomeHero() {
                 Start a <br />
                 new project <br /> with
                 <Typography component="span" variant="h1" sx={{ color: 'primary.main' }}>
-                  &nbsp;Meteor Starter Kit
+                  &nbsp;iDie
                 </Typography>
               </Typography>
             </m.div>

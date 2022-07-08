@@ -1,0 +1,17 @@
+query actions {
+  actions {
+    _id
+    action,
+    name,
+    equation
+  }
+}
+
+query editAction($_id: String) {
+  action(_id: $_id) {
+    _id
+    action,
+    name,
+    equation
+  }
+}

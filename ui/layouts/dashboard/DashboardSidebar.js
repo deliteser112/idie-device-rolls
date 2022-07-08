@@ -26,8 +26,8 @@ const DRAWER_WIDTH = 280;
 const RootStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {
     flexShrink: 0,
-    width: DRAWER_WIDTH,
-  },
+    width: DRAWER_WIDTH
+  }
 }));
 
 const AccountStyle = styled('div')(({ theme }) => ({
@@ -35,7 +35,7 @@ const AccountStyle = styled('div')(({ theme }) => ({
   alignItems: 'center',
   padding: theme.spacing(2, 2.5),
   borderRadius: Number(theme.shape.borderRadius) * 1.5,
-  backgroundColor: theme.palette.grey[500_12],
+  backgroundColor: theme.palette.grey[500_12]
 }));
 
 // ----------------------------------------------------------------------
@@ -70,13 +70,13 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
     <Scrollbar
       sx={{
         height: 1,
-        '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' },
+        '& .simplebar-content': { height: 1, display: 'flex', flexDirection: 'column' }
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex', alignItems: 'center' }}>
         <Logo />
         <Typography variant="h5" sx={{ marginLeft: 1 }}>
-          Meteor Starter Kit
+          iDie
         </Typography>
       </Box>
 
@@ -101,12 +101,18 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
       <Box sx={{ flexGrow: 1 }} />
 
       <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
-        <Stack
-          alignItems="center"
-          spacing={3}
-          sx={{ pt: 5, borderRadius: 2, position: 'relative' }}
-        >
-          <Box component="img" src="/static/illustrations/menu-back.png" />
+        <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
+          <Box
+            component="img"
+            src="/static/illustrations/roll-dice-1.jpg"
+            sx={{ width: 100, position: 'absolute', borderRadius: 2, top: -50 }}
+          />
+
+          <Box sx={{ textAlign: 'center' }}>
+            <Typography gutterBottom variant="h6">
+              Rolling Dice
+            </Typography>
+          </Box>
         </Stack>
       </Box>
     </Scrollbar>
@@ -119,7 +125,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
           open={isOpenSidebar}
           onClose={onCloseSidebar}
           PaperProps={{
-            sx: { width: DRAWER_WIDTH },
+            sx: { width: DRAWER_WIDTH }
           }}
         >
           {renderContent}
@@ -134,8 +140,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
             sx: {
               width: DRAWER_WIDTH,
               bgcolor: 'background.default',
-              borderRightStyle: 'dashed',
-            },
+              borderRightStyle: 'dashed'
+            }
           }}
         >
           {renderContent}
@@ -147,5 +153,5 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
 
 DashboardSidebar.propTypes = {
   isOpenSidebar: PropTypes.bool,
-  onCloseSidebar: PropTypes.func,
+  onCloseSidebar: PropTypes.func
 };

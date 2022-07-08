@@ -17,6 +17,16 @@ import CommentTypes from '../../api/Comments/types';
 import CommentQueries from '../../api/Comments/queries';
 import CommentMutations from '../../api/Comments/mutations';
 
+// devices
+import DeviceTypes from '../../api/Devices/types';
+import DeviceQueries from '../../api/Devices/queries';
+import DeviceMutations from '../../api/Devices/mutations';
+
+// actions
+import ActionTypes from '../../api/Actions/types';
+import ActionQueries from '../../api/Actions/queries';
+import ActionMutations from '../../api/Actions/mutations';
+
 import OAuthQueries from '../../api/OAuth/queries';
 
 import '../../api/Documents/server/indexes';
@@ -29,11 +39,23 @@ const schema = {
     ${UserTypes}
     ${DocumentTypes}
     ${CommentTypes}
+    ${DeviceTypes}
+    ${ActionTypes}
     ${UserSettingsTypes}
 
     type Query {
       documents: [Document]
       document(_id: String): Document
+
+      # device
+      devices: [Device]
+      deviceUsers: [DeviceUser]
+      device(_id: String): Device
+
+      # action
+      actions: [Action]
+      action(_id: String): Action
+
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
       userSettings: [UserSetting]
@@ -47,6 +69,17 @@ const schema = {
       removeDocument(_id: String!): Document
       addComment(documentId: String!, comment: String!): Comment
       removeComment(commentId: String!): Comment
+      
+      # device
+      addDevice(mac: String, name: String, ownerId: String, followerIds: [String]): Device
+      updateDevice(_id: String!, mac: String, name: String, ownerId: String, followerIds: [String]): Device
+      removeDevice(_id: String!): Device
+      
+      # action
+      addAction(name: String!, action: String!, equation: String!): Action
+      updateAction(_id: ID!, name: String!, action: String!, equation: String!): Action
+      removeAction(_id: String!): Action
+
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -63,6 +96,8 @@ const schema = {
   resolvers: {
     Query: {
       ...DocumentQueries,
+      ...DeviceQueries,
+      ...ActionQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
@@ -70,6 +105,8 @@ const schema = {
     Mutation: {
       ...DocumentMutations,
       ...CommentMutations,
+      ...DeviceMutations,
+      ...ActionMutations,
       ...UserMutations,
       ...UserSettingsMutations,
     },
