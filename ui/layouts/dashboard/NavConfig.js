@@ -27,13 +27,24 @@ const navConfig = [
         path: `${PATH_DASHBOARD.devices}`,
         icon: getIcon('ic:twotone-on-device-training'),
       },
+      {
+        title: 'dices',
+        path: `${PATH_DASHBOARD.dices}`,
+        icon: getIcon('ion:dice-outline'),
+      },
+      {
+        title: 'watch',
+        path: `${PATH_DASHBOARD.watchList}`,
+        path: '/dashboard/watch',
+        icon: getIcon('la:eye'),
+      }
     ],
   },
   {
     subheader: 'Admin',
     items: [
       {
-        title: 'user',
+        title: 'users',
         path: `${PATH_DASHBOARD.users}`,
         icon: getIcon('gis:globe-users'),
       },
@@ -43,7 +54,7 @@ const navConfig = [
         icon: getIcon('fluent:people-settings-28-regular'),
       },
       {
-        title: 'action',
+        title: 'actions',
         path: `${PATH_DASHBOARD.actions}`,
         icon: getIcon('carbon:touch-interaction'),
       },

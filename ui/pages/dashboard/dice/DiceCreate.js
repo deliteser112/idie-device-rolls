@@ -1,6 +1,7 @@
 // meteors
 import { Meteor } from 'meteor/meteor';
 import { useQuery } from "@apollo/react-hooks";
+import { useTracker } from 'meteor/react-meteor-data';
 
 import React, { useEffect, useState } from 'react';
 import ReactLoading from 'react-loading';
@@ -13,21 +14,25 @@ import {
 } from '@mui/material';
 
 // components
-import Page from '../../components/Page';
+import Page from '../../../components/Page';
 import DiceNewForm from './DiceNewForm';
 
 // import queries
-import {usersQuery, dicesQuery, actionsQuery} from '../queries'
+import { deviceUsers as usersQuery } from '../../../_queries/Devices.gql';
+import { actions as actionsQuery } from '../../../_queries/Actions.gql';
+import { editDice as editDiceQuery } from '../../../_queries/Dices.gql';
+
 // ----------------------------------------------------------------------
 
 export default function DiceCreate() {
-  const [currentDice, setCurrentDice] = useState(null);
   const [actionList, setActionList] = useState([]);
   const { pathname } = useLocation();
-  const { id } = useParams();
+  const { diceId } = useParams();
   const isEdit = pathname.includes('edit');
 
-  const dicesData = useQuery(dicesQuery).data;
+  const tmpDice = useQuery(editDiceQuery, { variables: { _id: diceId } }).data;
+  const currentDice = tmpDice && tmpDice.dice;
+
   const actionsData = useQuery(actionsQuery).data;
 
   useEffect(() => {
@@ -37,21 +42,11 @@ export default function DiceCreate() {
     }
   }, [actionsData]);
 
-  useEffect(() => {
-    if(isEdit && dicesData) {
-      const { dices } = dicesData;
-      const cDice = dices.find((dice) => dice._id === id);
-      setCurrentDice(cDice);
-    }
-  }, [dicesData, isEdit])
+  const  { loading, data } = useQuery(usersQuery);
 
-  const  { loading, data, refetch } = useQuery(usersQuery);
+  const userList = data && data.deviceUsers || [];
 
-  refetch();
-
-  const userList = data && data.allUsers || [];
-
-  const loggedUser = Meteor.user();
+  const loggedUser = useTracker(() => Meteor.user());
 
   return (
     <Page title={isEdit ? 'Update a Dice' : 'Create a Dice'}>

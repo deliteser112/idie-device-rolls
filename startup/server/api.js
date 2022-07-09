@@ -27,6 +27,11 @@ import ActionTypes from '../../api/Actions/types';
 import ActionQueries from '../../api/Actions/queries';
 import ActionMutations from '../../api/Actions/mutations';
 
+// dices
+import DiceTypes from '../../api/Dices/types';
+import DiceQueries from '../../api/Dices/queries';
+import DiceMutations from '../../api/Dices/mutations';
+
 import OAuthQueries from '../../api/OAuth/queries';
 
 import '../../api/Documents/server/indexes';
@@ -36,11 +41,16 @@ import '../../api/App/server/publications';
 
 const schema = {
   typeDefs: gql`
-    ${UserTypes}
     ${DocumentTypes}
     ${CommentTypes}
+
+    # user
     ${DeviceTypes}
+    ${DiceTypes}
+
+    # admin
     ${ActionTypes}
+    ${UserTypes}
     ${UserSettingsTypes}
 
     type Query {
@@ -55,6 +65,10 @@ const schema = {
       # action
       actions: [Action]
       action(_id: String): Action
+
+      # dice
+      dices: [Dice]
+      dice(_id: String): Dice
 
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
@@ -80,6 +94,11 @@ const schema = {
       updateAction(_id: ID!, name: String!, action: String!, equation: String!): Action
       removeAction(_id: String!): Action
 
+      # dice
+      addDice(did: String!, name: String!, userId: String!, actionIds: [String]!, coverImg: String): Dice
+      updateDice(_id: ID!, did: String!, name: String!, userId: String!, actionIds: [String]!, coverImg: String): Dice
+      removeDice(_id: String!): Dice
+
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -96,7 +115,12 @@ const schema = {
   resolvers: {
     Query: {
       ...DocumentQueries,
+
+      // user
       ...DeviceQueries,
+      ...DiceQueries,
+
+      // admin
       ...ActionQueries,
       ...UserQueries,
       ...UserSettingsQueries,
@@ -105,7 +129,12 @@ const schema = {
     Mutation: {
       ...DocumentMutations,
       ...CommentMutations,
+
+      // user
       ...DeviceMutations,
+      ...DiceMutations,
+
+      // admin
       ...ActionMutations,
       ...UserMutations,
       ...UserSettingsMutations,

@@ -1,5 +1,6 @@
-import RollsCollection from './DicesCollection';
+import DicesCollection from './DicesCollection';
 
 export default {
-  rolls: async (parent, args, context) => RollsCollection.find({}).fetch()
+  dices: async (parent, args, context) => DicesCollection.find({}).fetch(),
+  dice: async (parent, args, context) => DicesCollection.findOne({ _id: args._id }),
 };

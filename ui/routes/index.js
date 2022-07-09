@@ -26,6 +26,10 @@ import DocumentCreate from '../pages/dashboard/document/DocumentCreate';
 import Devices from '../pages/dashboard/device';
 import DeviceCreate from '../pages/dashboard/device/DeviceCreate';
 
+// dices
+import Dices from '../pages/dashboard/dice';
+import DiceCreate from '../pages/dashboard/dice/DiceCreate';
+
 // rolls
 import Rolls from '../pages/dashboard/roll';
 
@@ -74,6 +78,11 @@ export default function Router() {
         { path: 'devices', element: <Devices /> },
         { path: 'devices/create', element: <DeviceCreate /> },
         { path: 'devices/:deviceId/edit', element: <DeviceCreate /> },
+
+        // dices
+        { path: 'dices', element: <Dices /> },
+        { path: 'dices/create', element: <DiceCreate /> },
+        { path: 'dices/:diceId/edit', element: <DiceCreate /> },
 
         // Admin/users
         {

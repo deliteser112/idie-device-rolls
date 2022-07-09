@@ -1,0 +1,17 @@
+mutation addDice($did: String!, $name: String!, $userId: String!, $actionIds: [String]!, $coverImg: String) {
+  addDice(did: $did, name: $name, userId: $userId, actionIds: $actionIds, coverImg: $coverImg) {
+    _id
+  }
+}
+
+mutation updateDice($_id: ID!, $did: String!, $name: String!, $userId: String!, $actionIds: [String]!, $coverImg: String) {
+  updateDice(_id: $_id, did: $did, name: $name, userId: $userId, actionIds: $actionIds, coverImg: $coverImg) {
+    _id
+  }
+}
+
+mutation removeDice($_id: String!) {
+  removeDice(_id: $_id) {
+    _id
+  }
+}

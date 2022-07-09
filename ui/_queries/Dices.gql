@@ -1,19 +1,23 @@
 query dices {
   dices {
-      _id
-      mac,
-      name,
-      ownerId,
-      followerIds
+    _id
+    did,
+    name,
+    userId,
+    actionIds,
+    coverImg,
+    createdAt
   }
 }
 
-query editDevice($_id: String) {
-  device(_id: $_id) {
+query editDice($_id: String) {
+  dice(_id: $_id) {
     _id
-    mac,
+    did,
     name,
-    ownerId,
-    followerIds
+    userId,
+    actionIds,
+    coverImg,
+    createdAt
   }
 }

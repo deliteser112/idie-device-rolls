@@ -47,6 +47,13 @@ export const PATH_DASHBOARD = {
   devices: path(ROOTS_DASHBOARD, '/devices'),
   deviceCreate: path(ROOTS_DASHBOARD, '/devices/create'),
 
+  // dices
+  dices: path(ROOTS_DASHBOARD, '/dices'),
+  diceCreate: path(ROOTS_DASHBOARD, '/dices/create'),
+
+  // watch
+  watchList: path(ROOTS_DASHBOARD, '/watch-list'),
+
   // rolls
   rolls: path(ROOTS_DASHBOARD, '/rolls'),
   rollCreate: path(ROOTS_DASHBOARD, '/rolls/create'),

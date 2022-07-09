@@ -1,17 +1,11 @@
 export default `
-  type Roll {
+  type Dice {
     _id: ID!
-    device: String
-    dice: String
-    results: [Result]
-    createdAt: String
-  }
-
-  type Result {
-    coverImg: String
+    did: String
     name: String
-    result: String
-    calculation: String
-    equation: String
+    userId: String
+    actionIds: [String]
+    coverImg: String
+    createdAt: String
   }
 `;

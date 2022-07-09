@@ -1,5 +1,5 @@
 // meteor apollo graphql
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from '@apollo/react-hooks';
 
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
@@ -26,14 +26,20 @@ import {
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
-// components
-import UploadAvatar from '../../components/UploadAvatar';
+// mutations
+import { addDice as addDiceMutation, updateDice as updateDiceMutation } from '../../../_mutations/Dices.gql';
 
-// graphql
-import { diceMutation, diceUpdateMutation } from '../mutations';
+// queries
+import { dices as dicesQuery } from '../../../_queries/Dices.gql';
+
+// components
+import UploadAvatar from '../../../components/UploadAvatar';
+
+// routes
+import { PATH_DASHBOARD } from '../../../routes/paths';
 
 // utils
-import stringAvatar from '../../utils/stringAvatar';
+import stringAvatar from '../../../utils/stringAvatar';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -47,10 +53,10 @@ DiceNewForm.propTypes = {
 };
 
 export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList, actionList }) {
-  const [addDiceMutation] = useMutation(diceMutation);
-  const [updateDiceMutation] = useMutation(diceUpdateMutation);
+  const [addDice] = useMutation(addDiceMutation);
+  const [updateDice] = useMutation(updateDiceMutation);
   const [avatarUrl, setAvatarUrl] = useState('');
-  const [defaultOwner, setDefalutOwner] = useState({email: ''});
+  const [defaultOwner, setDefalutOwner] = useState({ email: '' });
   const [actions, setActions] = useState([]);
   const [isAdmin, setAdmin] = useState(false);
 
@@ -67,21 +73,21 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
       const { actionIds, coverImg } = currentDice;
       setAvatarUrl(coverImg);
       const tmpActions = [];
-      actionIds.map(actionId => {
-        actionList.map(item => {
+      actionIds.map((actionId) => {
+        actionList.map((item) => {
           if (actionId === item._id) tmpActions.push(item);
-        })
-      })
+        });
+      });
       setActions(tmpActions);
     }
   }, [isEdit, currentDice]);
 
   useEffect(() => {
-    if(actionList.length > 0 && !isEdit) {
-      setActions([actionList[0]])
+    if (actionList.length > 0 && !isEdit) {
+      setActions([actionList[0]]);
     }
   }, [isEdit, actionList]);
-  
+
   useEffect(() => {
     if (loggedUser) {
       const { _id, emails, profile } = loggedUser;
@@ -89,12 +95,12 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
         _id,
         email: emails[0].address,
         profile
-      }
-      setDefalutOwner(currentUser)
+      };
+      setDefalutOwner(currentUser);
       const { role } = profile;
       setAdmin(role === 'admin');
     }
-  }, [loggedUser])
+  }, [loggedUser]);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -105,6 +111,7 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
     validationSchema: NewSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 500));
         const { did, name } = values;
         const userId = defaultOwner._id;
         const actionIds = [];
@@ -112,56 +119,38 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
         actions.map((item) => {
           actionIds.push(item._id);
         });
-        const mockNumber = (Math.random()*7 + 1).toFixed(0);
+        const mockNumber = (Math.random() * 7 + 1).toFixed(0);
         const coverImg = `/static/mock-images/covers/cover_${mockNumber}.jpg`;
 
-        if (!isEdit) {
-          addDiceMutation({
-            variables: {
-              did,
-              name,
-              userId,
-              actionIds,
-              coverImg
-            },
-            refetchQueries: () => ['dices']
-          })
-          .then(({data}) => {
-            const { addDice } = data;
-            if(addDice) {
-              enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
-              navigate('/dashboard/dice');
-            }
-            else {
-              enqueueSnackbar('The Dice should be unique', { variant: 'warning' });
-            }
-          })
-          .catch(e => console.error('Error trying to add dice', e));
-        } else {
-          const { _id } = currentDice;
-          updateDiceMutation({
-            variables: {
-              diceId: _id,
-              did,
-              name,
-              userId,
-              actionIds,
-              coverImg
-            },
-            refetchQueries: () => ['dices']
-          })
-          .then(({data}) => {
-            enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
-            navigate('/dashboard/dice');
-          })
-          .catch(e => console.error('Error trying to add dice', e));
-        }
-    
-        // refetch();
+        const mutation = isEdit ? updateDice : addDice;
+        const diceToAddOrUpdate = {
+          did,
+          name,
+          userId,
+          actionIds,
+          coverImg
+        };
 
-        resetForm();
-        setSubmitting(false);
-        
+        if (isEdit) {
+          diceToAddOrUpdate._id = currentDice._id;
+        }
+
+        console.log(diceToAddOrUpdate);
+        mutation({
+          variables: {
+            ...diceToAddOrUpdate
+          },
+          refetchQueries: [{ query: dicesQuery }]
+        }).then((dice) => {
+          console.log(dice);
+          const isAdded = dice.data.addDice || dice.data.updateDice;
+          if (isAdded) {
+            enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!', { variant: 'success' });
+            navigate(PATH_DASHBOARD.dices);
+          } else {
+            enqueueSnackbar('Sorry, the did should be unique!', { variant: 'error' });
+          }
+        });
       } catch (error) {
         console.error(error);
         setSubmitting(false);
@@ -171,8 +160,8 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
   });
 
   const handleOwner = (user) => {
-    setDefalutOwner(user)
-  }
+    setDefalutOwner(user);
+  };
 
   const handleDropAvatar = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -238,7 +227,7 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
                 </Stack>
 
                 <Grid item xs={12} sm={6} md={9}>
-                  {defaultOwner.email && 
+                  {defaultOwner.email && (
                     <Autocomplete
                       readOnly={!isAdmin}
                       sx={{ width: '100% !important' }}
@@ -256,20 +245,17 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
                             style={{ marginRight: 8 }}
                             checked={selected}
                           />
-                          <Avatar {...stringAvatar(`${option.profile.firstName} ${option.profile.lastName}`)} style={{ marginRight: 8 }} />
+                          <Avatar
+                            {...stringAvatar(`${option.profile.firstName} ${option.profile.lastName}`)}
+                            style={{ marginRight: 8 }}
+                          />
                           {option.profile.firstName} {option.profile.lastName}
                         </li>
                       )}
                       style={{ width: 500 }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params} 
-                          label="User" 
-                          placeholder="Choose user" 
-                        />
-                      )}
+                      renderInput={(params) => <TextField {...params} label="User" placeholder="Choose user" />}
                     />
-                  }
+                  )}
                 </Grid>
                 <Grid item xs={12} sm={6} md={9}>
                   <Autocomplete
@@ -280,9 +266,7 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
                     value={actions}
                     getOptionLabel={(option) => option.name}
                     onChange={(event, actions) => setActions(actions)}
-                    renderInput={(params) => (
-                      <TextField {...params} label="Actions" placeholder="Choose actions" />
-                    )}
+                    renderInput={(params) => <TextField {...params} label="Actions" placeholder="Choose actions" />}
                     sx={{ width: '100% !important' }}
                   />
                 </Grid>
