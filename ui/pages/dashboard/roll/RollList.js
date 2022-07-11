@@ -17,10 +17,10 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Label from '../../components/Label';
-import Scrollbar from '../../components/Scrollbar';
-import SearchNotFound from '../../components/SearchNotFound';
-import { TableListHead, TableListToolbar, TableMoreMenu } from '../../sections/@dashboard/table';
+import Label from '../../../components/Label';
+import Scrollbar from '../../../components/Scrollbar';
+import SearchNotFound from '../../../components/SearchNotFound';
+import { TableListHead, TableListToolbar, RollTableMoreMenu } from '../../../sections/@dashboard/table';
 
 // ----------------------------------------------------------------------
 
@@ -166,7 +166,7 @@ export default function RollList({ rollList, onDelete, onMultiDelete }) {
                     </TableCell>
 
                     <TableCell align="right">
-                      <TableMoreMenu onDelete={() => onDelete(_id)} editLink="#" />
+                      <RollTableMoreMenu onDelete={() => onDelete(_id)} />
                     </TableCell>
                   </TableRow>
                 );

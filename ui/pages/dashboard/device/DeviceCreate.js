@@ -40,7 +40,7 @@ export default function DeviceCreate() {
           </Typography>
         </Stack>
         {loading ? (
-          <ReactLoading className="loading-icons" type={'spin'} color={'grey'} height={30} width={30} />
+          <ReactLoading className="loading-icons" type={'spin'} color={'grey'} height={35} width={35} />
         ) : (
           <DeviceNewForm isEdit={isEdit} loggedUser={loggedUser} currentDevice={currentDevice} userList={userList} />
         )}

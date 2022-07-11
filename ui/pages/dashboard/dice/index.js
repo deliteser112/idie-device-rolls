@@ -67,7 +67,6 @@ export default function Dices() {
   const dicesData = (data && data.dices) || [];
 
   const deleteDice = (_id) => {
-    console.log('ID', _id);
     removeDice({
       variables: {
         _id
@@ -86,7 +85,6 @@ export default function Dices() {
   }, [tmpUsers, tmpActions]);
 
   useEffect(() => {
-    console.log(users, dicesData, actions);
     if (users.length > 0 && dicesData.length > 0 && actions.length > 0) {
       const newDiceArr = [];
       dicesData.map((item) => {
@@ -120,7 +118,7 @@ export default function Dices() {
   }, [users, actions, dicesData]);
   return (
     <Page title="Dice">
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <HeaderBreadcrumbs
           heading="Dices"
           links={[{ name: 'Dashboard', href: PATH_DASHBOARD.root }, { name: 'Dices' }]}

@@ -1,0 +1,17 @@
+mutation addRoll($device: String!, $dice: String!) {
+  addRoll(device: $device, dice: $dice) {
+    _id
+  }
+}
+
+mutation removeRoll($_id: String!) {
+  removeRoll(_id: $_id) {
+    _id
+  }
+}
+
+mutation removeMultipleRoll($_id: String!) {
+  removeMultipleRoll(_id: $_id) {
+    _id
+  }
+}

@@ -32,6 +32,11 @@ import DiceTypes from '../../api/Dices/types';
 import DiceQueries from '../../api/Dices/queries';
 import DiceMutations from '../../api/Dices/mutations';
 
+// rolls
+import RollTypes from '../../api/Rolls/types';
+import RollQueries from '../../api/Rolls/queries';
+import RollMutations from '../../api/Rolls/mutations';
+
 import OAuthQueries from '../../api/OAuth/queries';
 
 import '../../api/Documents/server/indexes';
@@ -50,6 +55,7 @@ const schema = {
 
     # admin
     ${ActionTypes}
+    ${RollTypes}
     ${UserTypes}
     ${UserSettingsTypes}
 
@@ -69,6 +75,10 @@ const schema = {
       # dice
       dices: [Dice]
       dice(_id: String): Dice
+
+      # roll
+      rolls: [Roll]
+      rollsByMAC(device: String!): [Roll]
 
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
@@ -99,6 +109,11 @@ const schema = {
       updateDice(_id: ID!, did: String!, name: String!, userId: String!, actionIds: [String]!, coverImg: String): Dice
       removeDice(_id: String!): Dice
 
+      # roll
+      addRoll(device: String!, dice: String!): Roll
+      removeRoll(_id: String!): Roll
+      removeMultipleRoll(_id: String!): Roll
+      
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -122,6 +137,7 @@ const schema = {
 
       // admin
       ...ActionQueries,
+      ...RollQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
@@ -136,6 +152,7 @@ const schema = {
 
       // admin
       ...ActionMutations,
+      ...RollMutations,
       ...UserMutations,
       ...UserSettingsMutations,
     },

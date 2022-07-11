@@ -1,9 +1,6 @@
-// meteors
-import { Meteor } from 'meteor/meteor';
 import { useQuery } from "@apollo/react-hooks";
 
-import React, { useEffect, useState } from 'react';
-import ReactLoading from 'react-loading';
+import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 // material
 import { 
@@ -17,7 +14,7 @@ import Page from '../../../components/Page';
 import ActionNewForm from './ActionNewForm';
 
 // import queries & mutations
-import { actions as actionsQuery, editAction as editActionQuery } from '../../../_queries/Actions.gql';
+import { editAction as editActionQuery } from '../../../_queries/Actions.gql';
 // ----------------------------------------------------------------------
 
 export default function ActionCreate() {
@@ -28,7 +25,6 @@ export default function ActionCreate() {
   const tmpAction = useQuery(editActionQuery, { variables: { _id: actionId } }).data;
   const currentAction = tmpAction && tmpAction.action;
 
-  console.log('currentAction', currentAction);
   return (
     <Page title={isEdit ? 'Update a Action' : 'Create a Action'}>
       <Container>

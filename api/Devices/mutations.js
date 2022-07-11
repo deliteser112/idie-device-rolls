@@ -16,8 +16,6 @@ export default {
   },
   updateDevice: async (root, args, context) => {
     if (!context.user) throw new Error('Sorry, you must be logged in to update a device.');
-    // if (!DevicesCollection.findOne({ _id: args._id, owner: context.user._id }))
-      // throw new Error('Sorry, you need to be the owner of this device to update it.');
     DevicesCollection.update(
       { _id: args._id },
       {

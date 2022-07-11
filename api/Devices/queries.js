@@ -5,7 +5,6 @@ export default {
   devices: async (parent, args, context) => DevicesCollection.find({}).fetch(),
   device: async (parent, args, context) => DevicesCollection.findOne({ _id: args._id }),
   deviceUsers: async (parent, args, context) => {
-    console.log('Device Users');
     return Meteor.users
       .find({})
       .fetch()

@@ -30,8 +30,6 @@ export default {
   },
   removeDice: async (root, args, context) => {
     if (!context.user) throw new Error('Sorry, you must be logged in to remove a dice.');
-    if (!DicesCollection.findOne({ _id: args._id, userId: context.user._id }))
-      throw new Error('Sorry, you need to be the owner of this dice to remove it.');
     DicesCollection.remove(args);
     return args;
   }

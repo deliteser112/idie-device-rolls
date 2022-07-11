@@ -135,14 +135,12 @@ export default function DiceNewForm({ isEdit, loggedUser, currentDice, userList,
           diceToAddOrUpdate._id = currentDice._id;
         }
 
-        console.log(diceToAddOrUpdate);
         mutation({
           variables: {
             ...diceToAddOrUpdate
           },
           refetchQueries: [{ query: dicesQuery }]
         }).then((dice) => {
-          console.log(dice);
           const isAdded = dice.data.addDice || dice.data.updateDice;
           if (isAdded) {
             enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!', { variant: 'success' });

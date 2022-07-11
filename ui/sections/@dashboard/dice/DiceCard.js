@@ -20,11 +20,11 @@ const CardMediaStyle = styled('div')({
 
 const AvatarStyle = styled(Avatar)(({ theme }) => ({
   zIndex: 9,
-  width: 32,
-  height: 32,
+  width: 42,
+  height: 42,
   position: 'absolute',
   left: theme.spacing(3),
-  bottom: theme.spacing(-2),
+  bottom: theme.spacing(-2)
 }));
 
 const CoverImgStyle = styled('img')({
@@ -46,7 +46,7 @@ export default function DiceCard({ dice, onDelete }) {
   const { _id, did, name, owner, coverImg, actionItems, createdAt } = dice;
 
   return (
-    <Grid item xs={12} sm={6} md={3}>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ position: 'relative' }}>
         <CardMediaStyle>
           <SvgIconStyle

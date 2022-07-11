@@ -164,7 +164,6 @@ export default function DeviceNewForm({ isEdit, loggedUser, currentDevice, userL
           },
           refetchQueries: [{ query: devicesQuery }]
         }).then((device) => {
-          console.log(device);
           const isAdded = device.data.addDevice || device.data.updateDevice;
           if (isAdded) {
             enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!', { variant: 'success' });

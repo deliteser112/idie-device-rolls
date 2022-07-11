@@ -27,7 +27,6 @@ export default function Document() {
 
   const { data } = useQuery(editDocumentQuery, { variables: { _id: documentId } });
   const currentDocument = (isEdit && data && data.document) || {};
-  console.log(currentDocument);
   return (
     <Page title="Document">
       <Container maxWidth="xl">

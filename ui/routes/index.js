@@ -37,6 +37,9 @@ import Rolls from '../pages/dashboard/roll';
 import Actions from '../pages/dashboard/action';
 import ActionCreate from '../pages/dashboard/action/ActionCreate';
 
+// watch
+import Watch from '../pages/dashboard/watch';
+
 // users
 import User from '../pages/dashboard/user';
 import UserProfile from '../pages/dashboard/user-profile';
@@ -83,6 +86,10 @@ export default function Router() {
         { path: 'dices', element: <Dices /> },
         { path: 'dices/create', element: <DiceCreate /> },
         { path: 'dices/:diceId/edit', element: <DiceCreate /> },
+
+        // watch
+        { path: 'watch-list', element: <Watch /> },
+
 
         // Admin/users
         {

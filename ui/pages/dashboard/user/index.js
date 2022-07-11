@@ -26,8 +26,6 @@ export default function Users() {
 
   const users = (data && data.users && data.users.users) || [];
 
-  console.log('USERS:', users);
-
   const handleDeleteUser = (_id) => {
     removeUser({
       variables: {
@@ -45,7 +43,7 @@ export default function Users() {
           links={[{ name: 'Dashboard', href: PATH_DASHBOARD.root }, { name: 'Users' }]}
         />
         {loading ? (
-          <ReactLoading className="loading-icons" type="spin" color="grey" height={30} width={30} />
+          <ReactLoading className="loading-icons" type="spin" color="grey" height={35} width={35} />
         ) : (
           <UserList userList={users} onDelete={handleDeleteUser} />
         )}

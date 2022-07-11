@@ -45,7 +45,6 @@ export default function UserProfile() {
   const { data } = useQuery(userQuery, { variables: { _id: Meteor.userId() } });
   const user = data && data.user;
   const isUser = user && user.name;
-  console.log(data, isUser, Meteor.userId());
   if (!isUser) return <LoadingScreen />;
   const { _id, name, emailAddress } = user;
   const { coverURL } = account;

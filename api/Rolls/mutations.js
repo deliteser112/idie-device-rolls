@@ -6,7 +6,14 @@ import { getCalcuation } from '../utils';
 
 export default {
   addRoll: async (root, { device, dice }, context) => {
-    const diceIds = dice.split(',');
+    const tmpIds = dice.split(',');
+
+    const diceIds = [];
+
+    tmpIds.map((tId) => {
+      diceIds.push(tId.trim());
+    });
+
     const dices = DicesCollection.find({
       did: { $in: diceIds }
     }).fetch();
@@ -39,13 +46,19 @@ export default {
       });
     });
 
-    return await RollsCollection.save({ device, dice, results });
+    const rollId = RollsCollection.insert({ device, dice, results, createdAt: new Date() });
+    const roll = RollsCollection.findOne({ _id: rollId });
+    return roll;
   },
-  removeDocument: async (root, args, context) => {
-    if (!context.user) throw new Error('Sorry, you must be logged in to remove a document.');
-    if (!Documents.findOne({ _id: args._id, owner: context.user._id }))
-      throw new Error('Sorry, you need to be the owner of this document to remove it.');
-    Documents.remove(args);
+  removeRoll: async (root, args, context) => {
+    if (!context.user) throw new Error('Sorry, you must be logged in to remove a roll.');
+    RollsCollection.remove(args);
     return args;
+  },
+  removeMultipleRoll: async (root, { _id }, context) => {
+    const _ids = _id.split(',');
+    if (!context.user) throw new Error('Sorry, you must be logged in to remove a roll.');
+    RollsCollection.remove({ _id: { $in: _ids } });
+    return { _id };
   }
 };

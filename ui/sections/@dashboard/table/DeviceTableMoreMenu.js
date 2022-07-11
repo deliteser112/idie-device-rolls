@@ -46,7 +46,7 @@ export default function DeviceTableMoreMenu({ loggedUser, owner, followers, onDe
   return (
     <>
       <ConfirmDialog onAgree={handleAgree} isOpen={dialogOpen} title="iDie | Confirm" content="Are you sure to delete this item?" />
-      {/* <DeviceWatchDialog isOpen={deviceDialogOpen} macAddr={macAddr} onCloseDialog={() => setDeviceDialogOpen(false)} /> */}
+      <DeviceWatchDialog isOpen={deviceDialogOpen} macAddr={macAddr} onCloseDialog={() => setDeviceDialogOpen(false)} />
       <IconButton ref={ref} onClick={() => setIsOpen(true)}>
         <Iconify icon="eva:more-vertical-fill" width={20} height={20} />
       </IconButton>

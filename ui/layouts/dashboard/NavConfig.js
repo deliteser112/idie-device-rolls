@@ -17,11 +17,11 @@ const navConfig = [
         path: `${PATH_DASHBOARD.analytics}`,
         icon: getIcon('eva:pie-chart-2-fill'),
       },
-      {
-        title: 'documents',
-        path: `${PATH_DASHBOARD.documents}`,
-        icon: getIcon('gala:file-doc'),
-      },
+      // {
+      //   title: 'documents',
+      //   path: `${PATH_DASHBOARD.documents}`,
+      //   icon: getIcon('gala:file-doc'),
+      // },
       {
         title: 'devices',
         path: `${PATH_DASHBOARD.devices}`,
@@ -35,7 +35,6 @@ const navConfig = [
       {
         title: 'watch',
         path: `${PATH_DASHBOARD.watchList}`,
-        path: '/dashboard/watch',
         icon: getIcon('la:eye'),
       }
     ],

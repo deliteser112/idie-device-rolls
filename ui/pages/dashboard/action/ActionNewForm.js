@@ -27,7 +27,6 @@ ActionNewForm.propTypes = {
 };
 
 export default function ActionNewForm({ isEdit, currentAction }) {
-  console.log('currentAction:', currentAction);
   const [addAction] = useMutation(addActionMutation);
   const [updateAction] = useMutation(updateActionMutation);
 
@@ -62,15 +61,12 @@ export default function ActionNewForm({ isEdit, currentAction }) {
         if (isEdit) {
           actionToAddOrUpdate._id = currentAction._id;
         }
-
-        console.log('actionToAddOrUpdate', actionToAddOrUpdate);
         mutation({
           variables: {
             ...actionToAddOrUpdate
           },
           refetchQueries: [{ query: actionsQuery }]
         }).then((action) => {
-          console.log(action);
           const isAdded = action.data.addAction || action.data.updateAction;
           if (isAdded) {
             enqueueSnackbar(!isEdit ? 'Create success!' : 'Update success!', { variant: 'success' });

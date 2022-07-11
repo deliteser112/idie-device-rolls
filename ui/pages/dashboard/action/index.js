@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 
@@ -6,7 +6,7 @@ import ReactLoading from 'react-loading';
 import { PATH_DASHBOARD } from '../../../routes/paths';
 
 // @mui
-import { Container, Typography, Stack, Button } from '@mui/material';
+import { Container, Button } from '@mui/material';
 
 import { useTracker } from 'meteor/react-meteor-data';
 
@@ -30,11 +30,7 @@ import ActionList from './ActionList';
 export default function Actions() {
   const [removeAction] = useMutation(removeActionMutation);
 
-  const  { loading, data, refetch } = useQuery(actionsQuery);
-
-  console.log('DATA:', data);
-
-  // refetch();
+  const  { loading, data } = useQuery(actionsQuery);
 
   const { isLoading, actionCount } = useTracker(() => {
     const noDataAvailable = { actionCount: 0 };
@@ -55,7 +51,6 @@ export default function Actions() {
   const actions = data && data.actions || [];
 
   const deleteAction = (_id) => {
-    console.log('ID', _id);
     removeAction({
       variables: {
         _id,
@@ -82,7 +77,7 @@ export default function Actions() {
           }
         />
         {isLoading ? (
-          <ReactLoading className="loading-icons" type="spin" color="grey" height={15} width={15} />
+          <ReactLoading className="loading-icons" type="spin" color="grey" height={35} width={35} />
         ) : (
           <ActionList onDelete={(id) => deleteAction(id)} actionList={actions} />
         )}

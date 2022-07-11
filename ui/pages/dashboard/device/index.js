@@ -56,7 +56,6 @@ export default function Device() {
   const devicesData = (data && data.devices) || [];
 
   const deleteDevice = (_id) => {
-    console.log('ID', _id);
     removeDevice({
       variables: {
         _id,
@@ -112,7 +111,7 @@ export default function Device() {
           }
         />
         {isLoading ? (
-          <ReactLoading className="loading-icons" type="spin" color="grey" height={15} width={15} />
+          <ReactLoading className="loading-icons" type="spin" color="grey" height={35} width={35} />
         ) : (
           <DeviceList deviceList={devices} loggedUser={loggedUser} onDelete={(id) => deleteDevice(id)} />
         )}
