@@ -6,10 +6,10 @@ const getEmailOptions = (user) => {
   try {
     const firstName = 'user.profile.name.first';
     const { productName } = Meteor.settings.public;
-
     return {
       to: user.emails[0].address,
-      from: Meteor.settings.private.supportEmail,
+      from: 'care@gamesnight.fun',
+      // from: Meteor.settings.private.supportEmail,
       subject: `[${Meteor.settings.public.productName}] Welcome, ${firstName}!`,
       template: 'welcome',
       templateVars: {

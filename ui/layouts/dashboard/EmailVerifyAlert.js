@@ -25,7 +25,7 @@ const AlertbarStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 3),
   boxShadow: theme.customShadows.z8,
   // backgroundColor: 'green',
-  backgroundColor: `${alpha(theme.palette.error.lighter, 0.72)}`,
+  backgroundColor: `${alpha(theme.palette.warning.lighter, 0.72)}`,
   [theme.breakpoints.up('md')]: {
     height: APPBAR_DESKTOP,
     padding: theme.spacing(0, 5),

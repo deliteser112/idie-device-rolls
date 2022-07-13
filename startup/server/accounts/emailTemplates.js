@@ -8,7 +8,8 @@ const { emailTemplates } = Accounts;
 const { productName } = Meteor.settings.public;
 
 emailTemplates.siteName = productName;
-emailTemplates.from = Meteor.settings.private.supportEmail;
+emailTemplates.from = 'care@gamesnight.fun';
+// emailTemplates.from = Meteor.settings.private.supportEmail;
 
 emailTemplates.verifyEmail = {
   subject() {

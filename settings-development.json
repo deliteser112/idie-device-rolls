@@ -15,14 +15,14 @@
     "OAuth": {
       "facebook": {
         "enabled": true,
-        "appId": "",
-        "secret": "",
+        "appId": "659338544563358",
+        "secret": "0ae03b99e776077445546fad57a15742",
         "loginStyle": "popup"
       },
       "google": {
         "enabled": true,
-        "clientId": "204760194276-q6iunplenq0b69s7m9d66u7bk8ugbv3c.apps.googleusercontent.com",
-        "secret": "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",
+        "clientId": "955722000602-0hl38i48qqhias14f28ppk56t6n29ir0.apps.googleusercontent.com",
+        "secret": "vpUonZKIP2DEYcWBa7Mm0iH2",
         "loginStyle": "popup"
       },
       "github": {
@@ -32,6 +32,6 @@
         "loginStyle": "redirect"
       }
     },
-    "supportEmail": "Customer Support <support@product.com>"
+    "supportEmail": "Customer Support <care@gamesnight.fun>"
   }
 }
